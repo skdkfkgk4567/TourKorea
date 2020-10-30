@@ -1,10 +1,11 @@
 package com.example.sns_project.fragment;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.example.sns_project.activity.MainActivity;
+import com.example.sns_project.databinding.Cul2Binding;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -24,7 +25,8 @@ public class MyTopPostsFragment extends PostListFragment
         // My top posts by number of stars
         String myUserId = getUid();
         // [END my_top_posts_query]
-
+        Cul2Binding binding = Cul2Binding.inflate(getLayoutInflater());
+        binding.fabNewPost.setVisibility(View.VISIBLE);
         return databaseReference.collection("posts").whereEqualTo("uid", getUid()).orderBy("starCount", Query.Direction.DESCENDING).orderBy("time1", Query.Direction.DESCENDING);
     }
 }
