@@ -8,25 +8,22 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.sns_project.R;
 import com.example.sns_project.adapter.ViewPagerAdapter;
 import com.example.sns_project.databinding.Cul2Binding;
+import com.example.sns_project.fragment.BookingFragment;
 import com.example.sns_project.fragment.MapFragment;
 import com.example.sns_project.fragment.MyPostsFragment;
 import com.example.sns_project.fragment.MyTopPostsFragment;
-import com.example.sns_project.fragment.NowLocationFrag;
 import com.example.sns_project.fragment.RecentPostsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -46,9 +43,10 @@ public class MainActivity extends BaseActivity
     private MyPostsFragment myPostsFragment;
     private MyTopPostsFragment myTopPostsFragment;
     private MapFragment mapTest;
+    private BookingFragment bookingFragment;
     private MenuItem prevMenuItem;
 
-    private Intent it;
+    private Intent it, it2;
 
     private TabLayout tabLayout;
 
@@ -61,10 +59,11 @@ public class MainActivity extends BaseActivity
         setContentView(binding.getRoot());
         checkSelfPermission();
         it = new Intent(this, NowLocation.class);
+        it2 = new Intent(this, BookingSystem.class);
 
         //ViewPager 설정
         viewPager = (ViewPager) findViewById(R.id.container);
-        viewPager.setOffscreenPageLimit(4);
+        viewPager.setOffscreenPageLimit(5);
 
         //TabLayout 설정
         tabLayout = findViewById(R.id.tabs);
@@ -76,8 +75,13 @@ public class MainActivity extends BaseActivity
 
                 switch (pos)
                 {
+
                     case 3:
                         startActivity(it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        break;
+                    case 4:
+                        startActivity(it2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        break;
                 }
             }
 
@@ -100,6 +104,7 @@ public class MainActivity extends BaseActivity
         myPostsFragment = new MyPostsFragment();
         myTopPostsFragment = new MyTopPostsFragment();
         mapTest = new MapFragment();
+        bookingFragment = new BookingFragment();
 
         //ViewPageAdapter와 Fragment연결
 
@@ -108,6 +113,7 @@ public class MainActivity extends BaseActivity
         viewPagerAdapter.addFragment(myPostsFragment,"내 게시물");
         viewPagerAdapter.addFragment(myTopPostsFragment,"내 인기게시물");
         viewPagerAdapter.addFragment(mapTest,"지도");
+        viewPagerAdapter.addFragment(bookingFragment,"여행예약");
         viewPager.setAdapter(viewPagerAdapter);
 
         //TabLayout 아이콘 설정
@@ -116,6 +122,9 @@ public class MainActivity extends BaseActivity
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_post);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_action_starpost);
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_map);
+        tabLayout.getTabAt(4).setIcon(R.drawable.ic_action_reservation);
+
+
 
 
         binding.fabNewPost.setOnClickListener(new View.OnClickListener()
