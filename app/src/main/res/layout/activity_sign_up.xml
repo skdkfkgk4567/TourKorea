@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context="com.cookandroid.test2.Sign_up">
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textSize="23sp"
+            android:textColor="@color/colorAccent"
+            android:text="회원가입" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Email로 등록해 주세요." />
+
+        <EditText
+            android:id="@+id/sign_Email"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:hint="Email을 입력해주세요."
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/sign_Password"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:hint="password를 입력해주세요."
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/sign_Password2"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:hint="password 재입력"
+            android:inputType="textPassword" />
+
+        <DatePicker
+            android:id="@+id/datepicker"
+            android:layout_width="258dp"
+            android:layout_height="202dp"
+            android:layout_gravity="center_horizontal"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner" />
+
+
+        <TextView
+            android:id="@+id/tv_birthday"
+            android:layout_width="250dp"
+            android:layout_height="49dp"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:id="@+id/ed_name"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:hint="이름을 입력해세요."
+            android:inputType="text" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/trashbtn12"
+                android:layout_width="69dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:clickable="false"
+                android:text="Button"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/ed_phonenum"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:hint="전화번호를 입력해주세요."
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/sent"
+                android:layout_width="68dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:text="코드    발송" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/trashbtn1"
+                android:layout_width="69dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:clickable="false"
+                android:text="Button"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/ed_code"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:hint="인증번호를 입력해세요."
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/verify"
+                android:layout_width="68dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="코드    검사" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_sign_in"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
+            android:text="회원가입" />
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/textviewMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+</ScrollView>
+

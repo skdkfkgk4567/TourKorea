@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home_black_24dp"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="홈" />
+    <item
+        android:id="@+id/mypost"
+        android:icon="@drawable/ic_action_post"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="내 게시물" />
+    <item
+        android:id="@+id/mytoppost"
+        android:icon="@drawable/ic_action_starpost"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="추천받은 게시물" />
+    <item
+        android:id="@+id/nowlocation"
+        android:icon="@drawable/ic_map"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="주변지도" />
+</menu>
