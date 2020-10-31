@@ -22,6 +22,7 @@ import com.example.sns_project.adapter.ViewPagerAdapter;
 import com.example.sns_project.databinding.Cul2Binding;
 import com.example.sns_project.fragment.CheckInFragment;
 import com.example.sns_project.fragment.CheckOutFragment;
+import com.example.sns_project.fragment.FinalClass;
 import com.example.sns_project.fragment.PersonFragment;
 import com.example.sns_project.fragment.PlaceFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -42,6 +43,7 @@ public class BookingSystem extends BaseActivity
     private CheckInFragment checkInFragment;
     private CheckOutFragment checkOutFragment;
     private PersonFragment personFragment;
+    private FinalClass finalClass;
     private MenuItem prevMenuItem;
 
     private Intent it;
@@ -60,7 +62,7 @@ public class BookingSystem extends BaseActivity
 
         //ViewPager 설정
         viewPager = (ViewPager) findViewById(R.id.container);
-        viewPager.setOffscreenPageLimit(4);
+        viewPager.setOffscreenPageLimit(5);
 
         //TabLayout 설정
         tabLayout = findViewById(R.id.tabs);
@@ -93,12 +95,14 @@ public class BookingSystem extends BaseActivity
         checkInFragment = new CheckInFragment();
         checkOutFragment = new CheckOutFragment();
         personFragment = new PersonFragment();
+        finalClass = new FinalClass();
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
         viewPagerAdapter.addFragment(placeFragment,"위치");
         viewPagerAdapter.addFragment(checkInFragment,"체크인");
         viewPagerAdapter.addFragment(checkOutFragment,"체크아웃");
         viewPagerAdapter.addFragment(personFragment,"인원");
+        viewPagerAdapter.addFragment(finalClass,"최종확인");
         viewPager.setAdapter(viewPagerAdapter);
 
         //TabLayout 아이콘 설정
@@ -107,6 +111,13 @@ public class BookingSystem extends BaseActivity
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_checkin);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_action_checkout);
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_group_black_24dp);
+        tabLayout.getTabAt(4).setIcon(R.drawable.ic_action_complete);
+
+        tabLayout.getTabAt(0).setText("위치");
+        tabLayout.getTabAt(1).setText("체크인");
+        tabLayout.getTabAt(2).setText("체크아웃");
+        tabLayout.getTabAt(3).setText("인원");
+        tabLayout.getTabAt(4).setText("최종확인");
 
         //setupViewPager(viewPager);
 

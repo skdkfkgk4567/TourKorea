@@ -25,4 +25,10 @@
         android:icon="@drawable/ic_group_black_24dp"
         android:title="인원"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/complete"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_complete"
+        android:title="최종확인"
+        app:showAsAction="always" />
 </menu>
