@@ -15,6 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.sns_project.R;
 import com.example.sns_project.adapter.ViewPagerAdapter;
 import com.example.sns_project.databinding.Cul2Binding;
+import com.example.sns_project.fragment.BookingCalendarFragment;
 import com.example.sns_project.fragment.CheckInFragment;
 import com.example.sns_project.fragment.CheckOutFragment;
 import com.example.sns_project.fragment.FinalClass;
@@ -39,6 +40,7 @@ public class BookingSystem extends BaseActivity
     private CheckOutFragment checkOutFragment;
     private PersonFragment personFragment;
     private FinalClass finalClass;
+    private BookingCalendarFragment bcf;
     private MenuItem prevMenuItem;
 
     private Intent it;
@@ -57,7 +59,7 @@ public class BookingSystem extends BaseActivity
 
         //ViewPager 설정
         viewPager = findViewById(R.id.container);
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(4);
 
         //TabLayout 설정
         tabLayout = findViewById(R.id.tabs);
@@ -89,11 +91,14 @@ public class BookingSystem extends BaseActivity
         placeFragment = new PlaceFragment();
         personFragment = new PersonFragment();
         finalClass = new FinalClass();
+        bcf = new BookingCalendarFragment();
+
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
         viewPagerAdapter.addFragment(placeFragment,"위치");
         viewPagerAdapter.addFragment(personFragment,"인원");
         viewPagerAdapter.addFragment(finalClass,"최종확인");
+        viewPagerAdapter.addFragment(bcf, "일정");
         viewPager.setAdapter(viewPagerAdapter);
 
         //TabLayout 아이콘 설정
@@ -101,10 +106,12 @@ public class BookingSystem extends BaseActivity
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_map);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_group_black_24dp);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_action_complete);
+        tabLayout.getTabAt(3).setIcon(R.drawable.cal);
 
         tabLayout.getTabAt(0).setText("위치");
         tabLayout.getTabAt(1).setText("인원");
         tabLayout.getTabAt(2).setText("최종확인");
+        tabLayout.getTabAt(3).setText("일정");
 
     }
 
