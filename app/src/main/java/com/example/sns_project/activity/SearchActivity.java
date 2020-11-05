@@ -199,6 +199,7 @@ public class SearchActivity extends AppCompatActivity {
 
         try {
             JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
             mArrayList.clear();
             for (int i = 0; i < jsonArray.length(); i++) {
