@@ -24,6 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="true"
+
         tools:targetApi="n">
         <activity
             android:name=".activity.SearchActivity"

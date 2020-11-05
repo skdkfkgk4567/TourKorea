@@ -7,8 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
@@ -19,6 +19,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.sns_project.R;
 
 import org.json.JSONArray;
@@ -37,6 +38,8 @@ public class SearchActivity extends AppCompatActivity {
 
     private static String TAG = "phptest_MainActivity";
     private View header;
+    private ImageView photoimageView;
+    private LayoutInflater inflater;
 
     private static final String TAG_JSON="webnautes";
     private static final String TAG_HotelName = "HotelName";
@@ -56,29 +59,25 @@ public class SearchActivity extends AppCompatActivity {
 
 
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_search);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        setContentView(R.layout.fragment_search);
-        imageview = findViewById(R.id.photoImageVIew);
+        imageview = findViewById(R.id.photoImage);
         placeNameText = findViewById(R.id.placeNameText);
         addressTextView = findViewById(R.id.addressTextView);
         textView = findViewById(R.id.search_place);
-
         button = findViewById(R.id.search);
+
+
+
 
         mlistView = findViewById(R.id.listView_main_list);
         mArrayList = new ArrayList<>();
-
-        ListAdapter adapter = new SimpleAdapter(
-                SearchActivity.this, mArrayList, R.layout.item_place_list,
-                new String[]{TAG_HotelName, TAG_SiGunGu, TAG_ImageLink},
-                new int[]{R.id.placeNameText, R.id.addressTextView, R.id.photoImageVIew}
-        );
 
         mlistView.setAdapter(null);
         mlistView.invalidateViews();
@@ -93,17 +92,6 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        mlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
-                String test = parent.getAdapter().getItem(position).toString();
-                int check = test.indexOf(", SiGunGu");
-                System.out.println(test.substring(11,check));
-                ImageView imageViewUrl = findViewById(R.id.photoImageVIew);
-                //Picasso.get().load(test.substring(11,check)).into(imageViewUrl);
-            }
-        });
     }
 
     public class GetData extends AsyncTask<String, Void, String> {
@@ -130,6 +118,7 @@ public class SearchActivity extends AppCompatActivity {
 
             }
             else {
+
 
                 mJsonString = result;
                 showResult();
@@ -199,7 +188,6 @@ public class SearchActivity extends AppCompatActivity {
 
         try {
             JSONObject jsonObject = new JSONObject(mJsonString);
-            JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
             mArrayList.clear();
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -213,25 +201,23 @@ public class SearchActivity extends AppCompatActivity {
 
                 hashMap.put(TAG_HotelName, HotelName);
                 hashMap.put(TAG_SiGunGu, HotelAddress);
-                hashMap.put(TAG_ImageLink, ImageLink);
+                inflater = getLayoutInflater();
+                header = inflater.inflate(R.layout.item_place_list, null);
+                photoimageView  = header.findViewById(R.id.photoImage);
+                //hashMap.put(TAG_ImageLink, ImageLink);
+                System.out.println(ImageLink);
+                Glide.with(this).load(ImageLink).into(photoimageView);
                 count = i;
 
                 mArrayList.add(hashMap);
-
-
 
             }
 
             ListAdapter adapter = new SimpleAdapter(
                     SearchActivity.this, mArrayList, R.layout.item_place_list,
-                    new String[]{TAG_HotelName, TAG_SiGunGu, TAG_ImageLink},
-                    new int[]{R.id.placeNameText, R.id.addressTextView, R.id.photoImageVIew}
+                    new String[]{TAG_HotelName, TAG_SiGunGu/*, TAG_ImageLink*/},
+                    new int[]{R.id.placeNameText, R.id.addressTextView/*, R.id.photoImage*/}
             );
-
-
-
-
-
 
             mlistView.setAdapter(adapter);
 
@@ -240,4 +226,6 @@ public class SearchActivity extends AppCompatActivity {
             Log.d(TAG, "showResult : ", e);
         }
     }
+
+
 }
