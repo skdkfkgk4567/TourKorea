@@ -50,26 +50,47 @@
                 app:layout_constraintTop_toBottomOf="@+id/comcheckin" />
 
             <TextView
+                android:id="@+id/date_final"
+                android:layout_width="match_parent"
+                android:layout_height="91dp"
+                android:gravity="center"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/place_final"
+                android:layout_width="match_parent"
+                android:layout_height="91dp"
+                android:gravity="center"
+                android:textSize="25sp" />
+
+            <TextView
                 android:id="@+id/adult_final"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/child_final"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/baby_final"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                <Button
+                    android:id="@+id/CheckBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corner"
+                    android:text="확인" />
 
-            <Button
-                android:id="@+id/Reservation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_corner"
-                android:text="예약" />
+                <Button
+                    android:id="@+id/Reservation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corner"
+                    android:text="예약" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

@@ -1,19 +1,14 @@
 package com.example.sns_project.activity;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -61,8 +56,8 @@ public class BookingSystem extends BaseActivity
         binding.fabNewPost.setVisibility(View.GONE);
 
         //ViewPager 설정
-        viewPager = (ViewPager) findViewById(R.id.container);
-        viewPager.setOffscreenPageLimit(5);
+        viewPager = findViewById(R.id.container);
+        viewPager.setOffscreenPageLimit(3);
 
         //TabLayout 설정
         tabLayout = findViewById(R.id.tabs);
@@ -92,15 +87,11 @@ public class BookingSystem extends BaseActivity
 
 
         placeFragment = new PlaceFragment();
-        checkInFragment = new CheckInFragment();
-        checkOutFragment = new CheckOutFragment();
         personFragment = new PersonFragment();
         finalClass = new FinalClass();
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
         viewPagerAdapter.addFragment(placeFragment,"위치");
-        viewPagerAdapter.addFragment(checkInFragment,"체크인");
-        viewPagerAdapter.addFragment(checkOutFragment,"체크아웃");
         viewPagerAdapter.addFragment(personFragment,"인원");
         viewPagerAdapter.addFragment(finalClass,"최종확인");
         viewPager.setAdapter(viewPagerAdapter);
@@ -108,18 +99,12 @@ public class BookingSystem extends BaseActivity
         //TabLayout 아이콘 설정
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_map);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_checkin);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_action_checkout);
-        tabLayout.getTabAt(3).setIcon(R.drawable.ic_group_black_24dp);
-        tabLayout.getTabAt(4).setIcon(R.drawable.ic_action_complete);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_group_black_24dp);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_action_complete);
 
         tabLayout.getTabAt(0).setText("위치");
-        tabLayout.getTabAt(1).setText("체크인");
-        tabLayout.getTabAt(2).setText("체크아웃");
-        tabLayout.getTabAt(3).setText("인원");
-        tabLayout.getTabAt(4).setText("최종확인");
-
-        //setupViewPager(viewPager);
+        tabLayout.getTabAt(1).setText("인원");
+        tabLayout.getTabAt(2).setText("최종확인");
 
     }
 
@@ -151,18 +136,7 @@ public class BookingSystem extends BaseActivity
             return super.onOptionsItemSelected(item);
         }
     }
-    /*
-        private void setupViewPager(ViewPager viewPager)
-        {
-            ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
 
-            adapter.addFragment(recentPostsFragment);
-            adapter.addFragment(myPostsFragment);
-            adapter.addFragment(myTopPostsFragment);
-            adapter.addFragment(mapTest);
-            viewPager.setAdapter(adapter);
-        }
-    */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
     {
@@ -179,40 +153,4 @@ public class BookingSystem extends BaseActivity
             }
         }
     }
-
-    public void checkSelfPermission()
-    {
-        String temp = "";
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-        {
-            temp += Manifest.permission.READ_EXTERNAL_STORAGE + " ";
-        }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-        {
-            temp += Manifest.permission.WRITE_EXTERNAL_STORAGE + " ";
-        }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        {
-            temp += Manifest.permission.ACCESS_FINE_LOCATION + " ";
-        }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        {
-            temp += Manifest.permission.ACCESS_COARSE_LOCATION + " ";
-        }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-        {
-            temp += Manifest.permission.CAMERA + " ";
-        }
-
-        if (TextUtils.isEmpty(temp) == false)
-        {
-            ActivityCompat.requestPermissions(this, temp.trim().split(" "), 1);
-        }
-        else
-        {
-            Toast.makeText(this, "권한을 모두 허용", Toast.LENGTH_SHORT).show();
-        }
-    }
-
 }

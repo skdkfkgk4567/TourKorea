@@ -29,8 +29,6 @@ public class PersonFragment extends Fragment
         child_count = view.findViewById(R.id.child_count);
         baby_count = view.findViewById(R.id.baby_count);
         adult_final  = view2.findViewById(R.id.adult_final);
-        child_final  = view2.findViewById(R.id.child_final);
-        baby_final  = view2.findViewById(R.id.baby_final);
 
 
         //Button

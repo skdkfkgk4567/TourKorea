@@ -8,18 +8,6 @@
         android:title="위치"
         app:showAsAction="always" />
     <item
-        android:id="@+id/checkin"
-        android:enabled="true"
-        android:icon="@drawable/ic_action_checkin"
-        android:title="체크인"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/checkout"
-        android:enabled="true"
-        android:icon="@drawable/ic_action_checkout"
-        android:title="체크아웃"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/person"
         android:enabled="true"
         android:icon="@drawable/ic_group_black_24dp"
