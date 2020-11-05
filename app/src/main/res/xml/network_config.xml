@@ -3,5 +3,6 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">api.visitkorea.or.kr</domain>
         <domain includeSubdomains="true">tong.visitkorea.or.kr</domain>
+        <domain includeSubdomains="true">nsh.iptime.org</domain>
     </domain-config>
 </network-security-config>

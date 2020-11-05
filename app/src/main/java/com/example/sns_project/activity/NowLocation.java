@@ -4,6 +4,8 @@ package com.example.sns_project.activity;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -28,6 +30,7 @@ import com.example.sns_project.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -444,6 +447,10 @@ public class NowLocation extends AppCompatActivity implements AutoPermissionsLis
             options.title(entity.getName());
             options.snippet(entity.getAddr());
             options.snippet(entity.getTel());
+            BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.free);
+            Bitmap b=bitmapdraw.getBitmap();
+            Bitmap smallMarker = Bitmap.createScaledBitmap(b, 150, 150, false);
+            options.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
 
             map.addMarker(options);
             map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
