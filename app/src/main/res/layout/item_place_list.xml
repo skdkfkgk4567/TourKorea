@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/plLin"
     android:layout_width="match_parent"
     android:layout_height="80dp"
@@ -9,7 +10,8 @@
     <ImageView
         android:id="@+id/photoImage"
         android:layout_width="80dp"
-        android:layout_height="80dp" />
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/ic_account_circle_black_24dp" />
 
     <LinearLayout
         android:id="@+id/InPlin"
@@ -23,13 +25,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:hint="시설이름"
             android:textSize="20dp" />
 
         <TextView
             android:id="@+id/addressTextView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:hint="주소" />
     </LinearLayout>
 
 </LinearLayout>

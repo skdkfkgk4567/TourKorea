@@ -9,18 +9,18 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
 import com.example.sns_project.R;
+import com.example.sns_project.adapter.CustomAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +34,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private static String TAG = "phptest_MainActivity";
     private View header;
@@ -49,38 +49,31 @@ public class SearchActivity extends AppCompatActivity {
     public static TextView placeNameText;
     public static TextView addressTextView;
     private static int count = 0;
-    Bitmap bitmap;
 
     ArrayList<HashMap<String, String>> mArrayList;
     ListView mlistView;
     String mJsonString;
     Button button;
     TextView textView;
-
-
-
+    Bitmap bitmap;
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_search);
+        setContentView(R.layout.activity_searchaddress);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        imageview = findViewById(R.id.photoImage);
+
         placeNameText = findViewById(R.id.placeNameText);
         addressTextView = findViewById(R.id.addressTextView);
         textView = findViewById(R.id.search_place);
         button = findViewById(R.id.search);
 
-
-
-
         mlistView = findViewById(R.id.listView_main_list);
         mArrayList = new ArrayList<>();
 
-        mlistView.setAdapter(null);
-        mlistView.invalidateViews();
+        mlistView.setOnItemClickListener(this);
         button = findViewById(R.id.search);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +85,18 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String Address = parent.getAdapter().getItem(position).toString();
+        mlistView.isInEditMode();
+        ImageView myImage = findViewById(R.id.photoImage);
+        System.out.println(Address.substring(11,Address.indexOf(", SiGunGu")));
     }
 
     public class GetData extends AsyncTask<String, Void, String> {
@@ -201,22 +206,17 @@ public class SearchActivity extends AppCompatActivity {
 
                 hashMap.put(TAG_HotelName, HotelName);
                 hashMap.put(TAG_SiGunGu, HotelAddress);
-                inflater = getLayoutInflater();
-                header = inflater.inflate(R.layout.item_place_list, null);
-                photoimageView  = header.findViewById(R.id.photoImage);
-                //hashMap.put(TAG_ImageLink, ImageLink);
-                System.out.println(ImageLink);
-                Glide.with(this).load(ImageLink).into(photoimageView);
+                hashMap.put(TAG_ImageLink, ImageLink);
+
                 count = i;
 
                 mArrayList.add(hashMap);
-
             }
 
-            ListAdapter adapter = new SimpleAdapter(
+            ListAdapter adapter = new CustomAdapter(
                     SearchActivity.this, mArrayList, R.layout.item_place_list,
-                    new String[]{TAG_HotelName, TAG_SiGunGu/*, TAG_ImageLink*/},
-                    new int[]{R.id.placeNameText, R.id.addressTextView/*, R.id.photoImage*/}
+                    new String[]{TAG_HotelName, TAG_SiGunGu, TAG_ImageLink},
+                    new int[]{R.id.placeNameText, R.id.addressTextView, R.id.photoImage}
             );
 
             mlistView.setAdapter(adapter);

@@ -41,10 +41,9 @@ public class BookingSystem extends BaseActivity
     private FinalClass finalClass;
     private MenuItem prevMenuItem;
 
-    private Intent it;
+    private Intent it, it2;
 
     private TabLayout tabLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -53,6 +52,7 @@ public class BookingSystem extends BaseActivity
         Cul2Binding binding = Cul2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         it = new Intent(this, NowLocation.class);
+        it2 = new Intent(this, SearchActivity.class);
         binding.fabNewPost.setVisibility(View.GONE);
 
         //ViewPager 설정
@@ -69,6 +69,9 @@ public class BookingSystem extends BaseActivity
 
                 switch (pos)
                 {
+                    case 1:
+                        startActivity(it2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        break;
                 }
             }
 
@@ -92,19 +95,19 @@ public class BookingSystem extends BaseActivity
 
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
-        viewPagerAdapter.addFragment(placeFragment,"위치");
         viewPagerAdapter.addFragment(personFragment,"인원");
+        viewPagerAdapter.addFragment(placeFragment,"위치");
         viewPagerAdapter.addFragment(finalClass,"최종확인");
         viewPager.setAdapter(viewPagerAdapter);
 
         //TabLayout 아이콘 설정
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_map);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_group_black_24dp);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_group_black_24dp);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_map);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_action_complete);
 
-        tabLayout.getTabAt(0).setText("위치");
-        tabLayout.getTabAt(1).setText("인원");
+        tabLayout.getTabAt(0).setText("인원");
+        tabLayout.getTabAt(1).setText("위치");
         tabLayout.getTabAt(2).setText("최종확인");
 
     }

@@ -449,7 +449,7 @@ public class NowLocation extends AppCompatActivity implements AutoPermissionsLis
             options.snippet(entity.getTel());
             BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.free);
             Bitmap b=bitmapdraw.getBitmap();
-            Bitmap smallMarker = Bitmap.createScaledBitmap(b, 150, 150, false);
+            Bitmap smallMarker = Bitmap.createScaledBitmap(b, 100, 100, false);
             options.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
 
             map.addMarker(options);
