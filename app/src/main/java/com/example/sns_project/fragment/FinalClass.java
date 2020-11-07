@@ -36,8 +36,8 @@ public class FinalClass extends Fragment
                 {
                     case R.id.CheckBtn:
                         date_final.setText("");
-                        date_final.setText("체크인 날짜 : "+date_final.getText() + " " + comcheckin.getYear() + "/" + comcheckin.getMonth() + "/" + comcheckin.getDayOfMonth()
-                        + "\n체크아웃 날짜 : "+date_final.getText() + " " + comcheckout.getYear() + "/" + comcheckout.getMonth() + "/" + comcheckout.getDayOfMonth());
+                        date_final.setText("체크인 날짜 : "+date_final.getText() + " " + comcheckin.getYear() + "/" + comcheckin.getMonth()+1 + "/" + comcheckin.getDayOfMonth()
+                        + "\n체크아웃 날짜 : "+date_final.getText() + " " + comcheckout.getYear() + "/" + comcheckout.getMonth()+1 + "/" + comcheckout.getDayOfMonth());
                         break;
                 }
             }
