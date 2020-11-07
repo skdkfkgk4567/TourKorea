@@ -21,12 +21,9 @@ public class MyTopPostsFragment extends PostListFragment
     @Override
     public Query getQuery(FirebaseFirestore databaseReference)
     {
-        // [START my_top_posts_query]
-        // My top posts by number of stars
         String myUserId = getUid();
-        // [END my_top_posts_query]
         Cul2Binding binding = Cul2Binding.inflate(getLayoutInflater());
         binding.fabNewPost.setVisibility(View.VISIBLE);
-        return databaseReference.collection("posts").whereEqualTo("uid", getUid()).orderBy("starCount", Query.Direction.DESCENDING).orderBy("time1", Query.Direction.DESCENDING);
+        return databaseReference.collection("posts").orderBy("starCount", Query.Direction.DESCENDING).orderBy("time1", Query.Direction.DESCENDING);
     }
 }

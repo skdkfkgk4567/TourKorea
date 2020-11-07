@@ -40,6 +40,7 @@ public class BookingSystem extends BaseActivity
     private PersonFragment personFragment;
     private FinalClass finalClass;
     private MenuItem prevMenuItem;
+    private int person;
 
     private Intent it, it2;
 
@@ -70,6 +71,7 @@ public class BookingSystem extends BaseActivity
                 switch (pos)
                 {
                     case 1:
+                        person = FinalClass.person;
                         startActivity(it2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                         break;
                 }

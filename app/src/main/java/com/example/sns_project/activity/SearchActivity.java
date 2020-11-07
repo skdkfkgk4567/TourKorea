@@ -15,12 +15,14 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sns_project.R;
 import com.example.sns_project.adapter.CustomAdapter;
+import com.example.sns_project.fragment.FinalClass;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +51,12 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     public static TextView placeNameText;
     public static TextView addressTextView;
     private static int count = 0;
+    private int person;
+    private String Clcode;
+    private String Clcode2;
+    private int adult;
+    private int child;
+    private int baby;
 
     ArrayList<HashMap<String, String>> mArrayList;
     ListView mlistView;
@@ -64,6 +72,60 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_searchaddress);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+        person = FinalClass.person;
+        adult = FinalClass.adult;
+        child = FinalClass.child;
+        baby = FinalClass.baby;
+
+        System.out.println("SearchActivity person : "+person);
+        switch (person)
+        {
+
+            case 0:
+                Toast.makeText(getApplicationContext(), "인원을 선택해주세요!!!!!!",Toast.LENGTH_SHORT).show();
+                finish();
+                break;
+            case 1:
+                if(adult==0)
+                {
+                    Toast.makeText(getApplicationContext(), "성인없이 숙박업소 예약은 불가능합니다.",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else
+                {
+                    Clcode="1";
+                    Clcode2="1";
+                    break;
+                }
+            case 2:
+            case 3:
+            case 4:
+                if(adult==0)
+                {
+                    Toast.makeText(getApplicationContext(), "성인없이 숙박업소 예약은 불가능합니다.",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else
+                {
+                    Clcode="2";
+                    Clcode2="3";
+                    break;
+                }
+
+            case 5:
+            default:
+                if(adult==0)
+                {
+                    Toast.makeText(getApplicationContext(), "성인없이 숙박업소 예약은 불가능합니다.",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else
+                {
+                    Clcode="4";
+                    Clcode2="4";
+                    break;
+                }
+        }
 
         placeNameText = findViewById(R.id.placeNameText);
         addressTextView = findViewById(R.id.addressTextView);
@@ -81,7 +143,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                 String SiGunGu = textView.getText().toString();
                 System.out.println("SiGunGu : "+SiGunGu);
                 GetData task = new GetData();
-                task.execute(SiGunGu);
+                task.execute(SiGunGu,Clcode,Clcode2);
             }
         });
 
@@ -96,7 +158,6 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         String Address = parent.getAdapter().getItem(position).toString();
         mlistView.isInEditMode();
         ImageView myImage = findViewById(R.id.photoImage);
-        System.out.println(Address.substring(11,Address.indexOf(", SiGunGu")));
     }
 
     public class GetData extends AsyncTask<String, Void, String> {
@@ -136,11 +197,14 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
             String serverURL = "http://nsh.iptime.org:8012/ssss.php?SiGunGu=";
             String SiGunGu = params[0];
+            String Clcode = params[1];
+            String Clcode2 = params[2];
 
 
             try {
 
-                URL url = new URL(serverURL+SiGunGu);
+                URL url = new URL(serverURL+SiGunGu+"&Clcode="+Clcode+"&Clcode2="+Clcode2);
+                System.out.println("url : "+url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
 

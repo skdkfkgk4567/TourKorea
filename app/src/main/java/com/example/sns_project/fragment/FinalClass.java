@@ -18,6 +18,11 @@ public class FinalClass extends Fragment
     TextView date_final, adult_final;
     Button Reservation, CheckBtn;
     PersonFragment personFragment = new PersonFragment();
+    public static int person;
+    public static int adult;
+    public static int child;
+    public static int baby;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -36,8 +41,10 @@ public class FinalClass extends Fragment
                 {
                     case R.id.CheckBtn:
                         date_final.setText("");
-                        date_final.setText("체크인 날짜 : "+date_final.getText() + " " + comcheckin.getYear() + "/" + comcheckin.getMonth()+1 + "/" + comcheckin.getDayOfMonth()
-                        + "\n체크아웃 날짜 : "+date_final.getText() + " " + comcheckout.getYear() + "/" + comcheckout.getMonth()+1 + "/" + comcheckout.getDayOfMonth());
+                        int checkinMonth = comcheckin.getMonth()+1;
+                        int checkoutMonth = comcheckout.getMonth()+1;
+                        date_final.setText("체크인 날짜 : "+date_final.getText() + " " + comcheckin.getYear() + "/" + checkinMonth + "/" + comcheckin.getDayOfMonth()
+                        + "\n체크아웃 날짜 : "+date_final.getText() + " " + comcheckout.getYear() + "/" + checkoutMonth + "/" + comcheckout.getDayOfMonth());
                         break;
                 }
             }
@@ -48,6 +55,8 @@ public class FinalClass extends Fragment
         Reservation = view.findViewById(R.id.Reservation);
 
 
+
+
         adult_final.setText("성인 : " + personFragment.adult_count.getText() + "명     " + "어린이 : " + personFragment.child_count.getText() + "명     " + "유아 : " + personFragment.baby_count.getText() + "명");
 
         personFragment.complete.setOnClickListener(new View.OnClickListener()
@@ -56,13 +65,10 @@ public class FinalClass extends Fragment
             public void onClick(View v)
             {
                 adult_final.setText("성인 : " + personFragment.adult_count.getText() + "명     " + "어린이 : " + personFragment.child_count.getText() + "명     " + "유아 : " + personFragment.baby_count.getText() + "명");
-                /*
-                adult_final.setText("성인 : " + personFragment.adult_count.getText() + "명");
-                child_final.setText("어린이 : " + personFragment.child_count.getText() + "명");
-                baby_final.setText("유아 : " + personFragment.baby_count.getText() + "명");
-                */
-
-
+                adult = Integer.valueOf((String) personFragment.adult_count.getText());
+                child = Integer.valueOf((String) personFragment.child_count.getText());
+                baby = Integer.valueOf((String) personFragment.baby_count.getText());
+                person = adult+child+baby;
             }
         });
 

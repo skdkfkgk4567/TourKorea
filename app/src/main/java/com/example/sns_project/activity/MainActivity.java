@@ -63,7 +63,7 @@ public class MainActivity extends BaseActivity
 
         //ViewPager 설정
         viewPager = (ViewPager) findViewById(R.id.container);
-        viewPager.setOffscreenPageLimit(5);
+        viewPager.setOffscreenPageLimit(4);
 
         //TabLayout 설정
         tabLayout = findViewById(R.id.tabs);
@@ -76,10 +76,10 @@ public class MainActivity extends BaseActivity
                 switch (pos)
                 {
 
-                    case 3:
+                    case 2:
                         startActivity(it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                         break;
-                    case 4:
+                    case 3:
                         startActivity(it2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                         break;
                 }
@@ -101,7 +101,6 @@ public class MainActivity extends BaseActivity
 
         //Fragment 생성
         recentPostsFragment = new RecentPostsFragment();
-        myPostsFragment = new MyPostsFragment();
         myTopPostsFragment = new MyTopPostsFragment();
         mapTest = new MapFragment();
         bookingFragment = new BookingFragment();
@@ -110,7 +109,6 @@ public class MainActivity extends BaseActivity
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
         viewPagerAdapter.addFragment(recentPostsFragment,"홈");
-        viewPagerAdapter.addFragment(myPostsFragment,"내 게시물");
         viewPagerAdapter.addFragment(myTopPostsFragment,"내 인기게시물");
         viewPagerAdapter.addFragment(mapTest,"지도");
         viewPagerAdapter.addFragment(bookingFragment,"여행예약");
@@ -119,10 +117,9 @@ public class MainActivity extends BaseActivity
         //TabLayout 아이콘 설정
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_black_24dp);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_post);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_action_starpost);
-        tabLayout.getTabAt(3).setIcon(R.drawable.ic_map);
-        tabLayout.getTabAt(4).setIcon(R.drawable.ic_action_reservation);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_starpost);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_map);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_action_reservation);
 
 
 
@@ -167,18 +164,6 @@ public class MainActivity extends BaseActivity
             return super.onOptionsItemSelected(item);
         }
     }
-/*
-    private void setupViewPager(ViewPager viewPager)
-    {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
-
-        adapter.addFragment(recentPostsFragment);
-        adapter.addFragment(myPostsFragment);
-        adapter.addFragment(myTopPostsFragment);
-        adapter.addFragment(mapTest);
-        viewPager.setAdapter(adapter);
-    }
-*/
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
     {
