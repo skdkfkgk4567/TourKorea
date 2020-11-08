@@ -65,7 +65,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static com.example.sns_project.fragment.DayTimeFragment.checkinDate;
-import static com.example.sns_project.fragment.DayTimeFragment.checkioutDate;
+import static com.example.sns_project.fragment.DayTimeFragment.checkoutDate;
 
 public class FestivalMap extends Fragment implements OnMapReadyCallback {
 
@@ -176,7 +176,6 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.clear();
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
 
             @Override
@@ -295,11 +294,17 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
                 Log.d(TAG, "Time :" + CurrentTime() + " onLocationResult : " + markerSnippet);
                 setCurrentLocation(location, markerTitle, markerSnippet);
                 mCurrentLocatiion = location;
-                try {
-                    apiParserSearch();
-                    setUpMap();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                String eventstart = checkinDate;
+                String eventend = checkoutDate;
+                System.out.println(eventstart);
+                if(eventstart!=null)
+                {
+                    try {
+                        apiParserSearch();
+                        setUpMap();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
@@ -563,6 +568,8 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
 
     public static ArrayList<TourDTO> apiParserSearch() throws Exception
     {
+        eventStartDate = checkinDate;
+        eventEndDate = checkoutDate;
         URL url = new URL(getURLParam(eventStartDate,eventEndDate));
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
@@ -636,8 +643,6 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
 
     public static String getURLParam(String eventStartDate, String eventEndDate)
     {
-        eventStartDate = checkinDate;
-        eventEndDate = checkioutDate;
         String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey=axOWzdA%2Ft%2BFO89n8RY1laQLwOgKCba1RfMVxBXmfb9m4mdbSryUpClG1seyeoXHudXIHFYNT3%2F3HagA11q28YA%3D%3D&numOfRows=10000&pageNo=1&MobileOS=AND&MobileApp=AppTest&arrange=A&listYN=Y";
 
         if (eventStartDate != null)

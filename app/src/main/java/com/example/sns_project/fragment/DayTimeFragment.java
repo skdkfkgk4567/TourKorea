@@ -20,7 +20,7 @@ public class DayTimeFragment extends Fragment
     public static int checkinMonth;
     public static int checkoutMonth;
     public static String checkinDate;
-    public static  String checkioutDate;
+    public static  String checkoutDate;
 
 
     @Override
@@ -50,10 +50,10 @@ public class DayTimeFragment extends Fragment
                         String coutgetYear = String.valueOf(comcheckout.getYear());
                         String coutgetMonth = String.valueOf(checkoutMonth);
                         String coutgetDay = String.valueOf(comcheckout.getDayOfMonth());
-                        checkioutDate = coutgetYear+coutgetMonth+coutgetDay;
+                        checkoutDate = coutgetYear+coutgetMonth+coutgetDay;
                         date_final.setText("체크인 날짜 : "+date_final.getText() + " " + comcheckin.getYear() + "/" + checkinMonth + "/" + comcheckin.getDayOfMonth()
                         + "\n체크아웃 날짜 : "+date_final.getText() + " " + comcheckout.getYear() + "/" + checkoutMonth + "/" + comcheckout.getDayOfMonth());
-                        FestivalMap.getURLParam(checkinDate,checkioutDate);
+                        FestivalMap.getURLParam(checkinDate,checkoutDate);
                         break;
                 }
             }

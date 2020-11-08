@@ -1,6 +1,7 @@
 package com.example.sns_project.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -64,6 +65,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     Button button;
     TextView textView;
     Bitmap bitmap;
+    TextView txtResult;
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
@@ -154,10 +156,10 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String Address = parent.getAdapter().getItem(position).toString();
-        mlistView.isInEditMode();
-        ImageView myImage = findViewById(R.id.photoImage);
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    {
+        Intent intent = new Intent(SearchActivity.this, PopupRoom.class);
+        startActivityForResult(intent, 1);
     }
 
     public class GetData extends AsyncTask<String, Void, String> {

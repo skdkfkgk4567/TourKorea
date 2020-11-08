@@ -41,6 +41,7 @@ public class BookingSystem extends BaseActivity
     private MenuItem prevMenuItem;
     private int person;
 
+
     private Intent it, it2;
 
     private TabLayout tabLayout;
@@ -53,6 +54,8 @@ public class BookingSystem extends BaseActivity
         setContentView(binding.getRoot());
         it = new Intent(this, NowLocation.class);
         it2 = new Intent(this, SearchActivity.class);
+
+
 
         //ViewPager 설정
         viewPager = findViewById(R.id.container);
@@ -68,7 +71,7 @@ public class BookingSystem extends BaseActivity
 
                 switch (pos)
                 {
-                    case 2:
+                    case 3:
                         person = FinalClass.person;
                         startActivity(it2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                         break;
@@ -119,7 +122,6 @@ public class BookingSystem extends BaseActivity
         tabLayout.getTabAt(4).setText("최종확인");
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
