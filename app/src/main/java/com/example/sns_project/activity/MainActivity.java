@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity
     private NowLocation_V2 nowlocation;
     private MenuItem prevMenuItem;
 
-    private Intent it, it2;
+    private Intent it2;
 
     private TabLayout tabLayout;
 
@@ -60,12 +60,11 @@ public class MainActivity extends BaseActivity
         Cul2Binding binding = Cul2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         checkSelfPermission();
-        it = new Intent(this, NowLocation.class);
         it2 = new Intent(this, BookingSystem.class);
 
         //ViewPager 설정
         viewPager = (ViewPager) findViewById(R.id.container);
-        viewPager.setOffscreenPageLimit(5);
+        viewPager.setOffscreenPageLimit(4);
 
         //TabLayout 설정
         tabLayout = findViewById(R.id.tabs);
@@ -77,11 +76,7 @@ public class MainActivity extends BaseActivity
 
                 switch (pos)
                 {
-
                     case 2:
-                        startActivity(it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                        break;
-                    case 3:
                         startActivity(it2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                         break;
                 }
@@ -104,7 +99,6 @@ public class MainActivity extends BaseActivity
         //Fragment 생성
         recentPostsFragment = new RecentPostsFragment();
         myTopPostsFragment = new MyTopPostsFragment();
-        mapTest = new MapFragment();
         bookingFragment = new BookingFragment();
         nowlocation = new NowLocation_V2();
 
@@ -113,18 +107,16 @@ public class MainActivity extends BaseActivity
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
         viewPagerAdapter.addFragment(recentPostsFragment,"홈");
         viewPagerAdapter.addFragment(myTopPostsFragment,"내 인기게시물");
-        viewPagerAdapter.addFragment(mapTest,"지도");
         viewPagerAdapter.addFragment(bookingFragment,"여행예약");
-        viewPagerAdapter.addFragment(nowlocation,"지도테스트");
+        viewPagerAdapter.addFragment(nowlocation,"지도");
         viewPager.setAdapter(viewPagerAdapter);
 
         //TabLayout 아이콘 설정
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_black_24dp);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_starpost);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_map);
-        tabLayout.getTabAt(3).setIcon(R.drawable.ic_action_reservation);
-        tabLayout.getTabAt(4).setIcon(R.drawable.ic_map);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_action_reservation);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_map);
 
 
 

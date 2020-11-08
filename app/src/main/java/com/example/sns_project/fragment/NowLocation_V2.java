@@ -640,8 +640,9 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
 
     public static String getURLParam(String mapx, String mapy)
     {
-        String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList?serviceKey=yjLZTJHFbgy0YqvubJsxK1Izf%2FW%2ByFs94A%2F0M046ZxHpCCwpWQ84MCnhvwz%2FipI8kKSdJXvZ7D5qZWqCtmSVYA%3D%3D&numOfRows=100&pageNo=1&MobileOS=AND&MobileApp=AppTest&arrange=E&contentTypeId=15";
+        String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList?serviceKey=axOWzdA%2Ft%2BFO89n8RY1laQLwOgKCba1RfMVxBXmfb9m4mdbSryUpClG1seyeoXHudXIHFYNT3%2F3HagA11q28YA%3D%3D&numOfRows=100&pageNo=1&MobileOS=AND&MobileApp=AppTest&arrange=E&contentTypeId=15";
         //String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?ServiceKey=yjLZTJHFbgy0YqvubJsxK1Izf%2FW%2ByFs94A%2F0M046ZxHpCCwpWQ84MCnhvwz%2FipI8kKSdJXvZ7D5qZWqCtmSVYA%3D%3D&eventStartDate=20201101&eventEndDate=20201130&areaCode=&sigunguCode=&cat1=A02&cat2=&cat3=&listYN=Y&MobileOS=AND&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1";
+        //String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=axOWzdA%2Ft%2BFO89n8RY1laQLwOgKCba1RfMVxBXmfb9m4mdbSryUpClG1seyeoXHudXIHFYNT3%2F3HagA11q28YA%3D%3D&contentTypeId=12&areaCode=&sigunguCode=&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=A&numOfRows=12&pageNo=1";
         //위 url : 위치기반 검색
         //아래url : 전국 해당기간 축제 검색
         if (mapx != null)
