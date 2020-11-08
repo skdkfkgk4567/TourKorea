@@ -560,8 +560,9 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
 
     public static String getURLParam2(String keyword)
     {
-        String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword?serviceKey=axOWzdA%2Ft%2BFO89n8RY1laQLwOgKCba1RfMVxBXmfb9m4mdbSryUpClG1seyeoXHudXIHFYNT3%2F3HagA11q28YA%3D%3D&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10&listYN=Y&arrange=A&contentTypeId=15&areaCode=&sigunguCode=&cat1=&cat2=&cat3=&keyword=";
+        String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword?serviceKey=axOWzdA%2Ft%2BFO89n8RY1laQLwOgKCba1RfMVxBXmfb9m4mdbSryUpClG1seyeoXHudXIHFYNT3%2F3HagA11q28YA%3D%3D&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10&listYN=Y&arrange=A&contentTypeId=12&keyword=";
         url = url + keyword;
+        System.out.println("url : "+url);
         System.out.println("keyword : "+keyword);
         return url;
     }
