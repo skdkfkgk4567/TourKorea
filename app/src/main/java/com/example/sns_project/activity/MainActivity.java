@@ -24,6 +24,7 @@ import com.example.sns_project.fragment.BookingFragment;
 import com.example.sns_project.fragment.MapFragment;
 import com.example.sns_project.fragment.MyPostsFragment;
 import com.example.sns_project.fragment.MyTopPostsFragment;
+import com.example.sns_project.fragment.NowLocation_V2;
 import com.example.sns_project.fragment.RecentPostsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -32,7 +33,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends BaseActivity
 {
     private static final String TAG = "MainActivity";
-    public static int Num_ITEMS = 4;
+    public static int Num_ITEMS = 5;
     public static String PageName ="";
     private ViewPager viewPager;
     BottomNavigationView bottomNavigationView;
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity
     private MyTopPostsFragment myTopPostsFragment;
     private MapFragment mapTest;
     private BookingFragment bookingFragment;
+    private NowLocation_V2 nowlocation;
     private MenuItem prevMenuItem;
 
     private Intent it, it2;
@@ -63,7 +65,7 @@ public class MainActivity extends BaseActivity
 
         //ViewPager 설정
         viewPager = (ViewPager) findViewById(R.id.container);
-        viewPager.setOffscreenPageLimit(4);
+        viewPager.setOffscreenPageLimit(5);
 
         //TabLayout 설정
         tabLayout = findViewById(R.id.tabs);
@@ -104,6 +106,7 @@ public class MainActivity extends BaseActivity
         myTopPostsFragment = new MyTopPostsFragment();
         mapTest = new MapFragment();
         bookingFragment = new BookingFragment();
+        nowlocation = new NowLocation_V2();
 
         //ViewPageAdapter와 Fragment연결
 
@@ -112,6 +115,7 @@ public class MainActivity extends BaseActivity
         viewPagerAdapter.addFragment(myTopPostsFragment,"내 인기게시물");
         viewPagerAdapter.addFragment(mapTest,"지도");
         viewPagerAdapter.addFragment(bookingFragment,"여행예약");
+        viewPagerAdapter.addFragment(nowlocation,"지도테스트");
         viewPager.setAdapter(viewPagerAdapter);
 
         //TabLayout 아이콘 설정
@@ -120,6 +124,7 @@ public class MainActivity extends BaseActivity
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_starpost);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_map);
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_action_reservation);
+        tabLayout.getTabAt(4).setIcon(R.drawable.ic_map);
 
 
 
