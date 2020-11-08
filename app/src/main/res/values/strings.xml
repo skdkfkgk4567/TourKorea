@@ -46,4 +46,7 @@
         <item name="6">S</item>
         <item name="7">S</item>
     </string-array>
+    <string name="title_activity_festival_map">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

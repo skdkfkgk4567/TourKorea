@@ -308,7 +308,6 @@ public class NowLocation extends AppCompatActivity implements AutoPermissionsLis
                     entity.setAddr(addr1);
                     entity.setTel(tel);
                     entity.setImage1(firstimage);
-                    entity.setImage2(secondimage);
                     list.add(entity);
                 }
             }
@@ -343,6 +342,7 @@ public class NowLocation extends AppCompatActivity implements AutoPermissionsLis
         if (mapx != null)
         {
             url = url + keyword;
+            System.out.println("keyword : "+keyword);
         }
         return url;
     }
@@ -411,7 +411,6 @@ public class NowLocation extends AppCompatActivity implements AutoPermissionsLis
                     entity.setAddr(addr1);
                     entity.setTel(tel);
                     entity.setImage1(firstimage);
-                    entity.setImage2(secondimage);
                     list.add(entity);
                 }
             }
@@ -424,8 +423,10 @@ public class NowLocation extends AppCompatActivity implements AutoPermissionsLis
 
     public static String getURLParam(String mapx, String mapy)
     {
-        //String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList?serviceKey=yjLZTJHFbgy0YqvubJsxK1Izf%2FW%2ByFs94A%2F0M046ZxHpCCwpWQ84MCnhvwz%2FipI8kKSdJXvZ7D5qZWqCtmSVYA%3D%3D&numOfRows=100&pageNo=1&MobileOS=AND&MobileApp=AppTest&arrange=E&contentTypeId=15";
-        String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?ServiceKey=yjLZTJHFbgy0YqvubJsxK1Izf%2FW%2ByFs94A%2F0M046ZxHpCCwpWQ84MCnhvwz%2FipI8kKSdJXvZ7D5qZWqCtmSVYA%3D%3D&eventStartDate=20201101&eventEndDate=20201130&areaCode=&sigunguCode=&cat1=A02&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=A&numOfRows=12&pageNo=1";
+        String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList?serviceKey=yjLZTJHFbgy0YqvubJsxK1Izf%2FW%2ByFs94A%2F0M046ZxHpCCwpWQ84MCnhvwz%2FipI8kKSdJXvZ7D5qZWqCtmSVYA%3D%3D&numOfRows=100&pageNo=1&MobileOS=AND&MobileApp=AppTest&arrange=E&contentTypeId=15";
+        //String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?ServiceKey=yjLZTJHFbgy0YqvubJsxK1Izf%2FW%2ByFs94A%2F0M046ZxHpCCwpWQ84MCnhvwz%2FipI8kKSdJXvZ7D5qZWqCtmSVYA%3D%3D&eventStartDate=20201101&eventEndDate=20201130&areaCode=&sigunguCode=&cat1=A02&cat2=&cat3=&listYN=Y&MobileOS=AND&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1";
+        //위 url : 위치기반 검색
+        //아래url : 전국 해당기간 축제 검색
         if (mapx != null)
         {
             url = url + "&mapX=" + mapx;

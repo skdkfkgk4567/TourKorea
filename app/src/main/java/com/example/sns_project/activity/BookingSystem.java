@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -14,9 +13,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.sns_project.R;
 import com.example.sns_project.adapter.ViewPagerAdapter;
-import com.example.sns_project.databinding.Cul2Binding;
-import com.example.sns_project.fragment.CheckInFragment;
-import com.example.sns_project.fragment.CheckOutFragment;
+import com.example.sns_project.databinding.BookingBinding;
+import com.example.sns_project.fragment.DayTimeFragment;
+import com.example.sns_project.fragment.FestivalMap;
 import com.example.sns_project.fragment.FinalClass;
 import com.example.sns_project.fragment.PersonFragment;
 import com.example.sns_project.fragment.PlaceFragment;
@@ -35,10 +34,10 @@ public class BookingSystem extends BaseActivity
     FragmentPagerAdapter PagerAdapter;
 
     private PlaceFragment placeFragment;
-    private CheckInFragment checkInFragment;
-    private CheckOutFragment checkOutFragment;
     private PersonFragment personFragment;
+    private FestivalMap festivalMap;
     private FinalClass finalClass;
+    private DayTimeFragment dayTimeFragment;
     private MenuItem prevMenuItem;
     private int person;
 
@@ -50,15 +49,14 @@ public class BookingSystem extends BaseActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        Cul2Binding binding = Cul2Binding.inflate(getLayoutInflater());
+        BookingBinding binding = BookingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         it = new Intent(this, NowLocation.class);
         it2 = new Intent(this, SearchActivity.class);
-        binding.fabNewPost.setVisibility(View.GONE);
 
         //ViewPager 설정
         viewPager = findViewById(R.id.container);
-        viewPager.setOffscreenPageLimit(4);
+        viewPager.setOffscreenPageLimit(6);
 
         //TabLayout 설정
         tabLayout = findViewById(R.id.tabs);
@@ -70,7 +68,7 @@ public class BookingSystem extends BaseActivity
 
                 switch (pos)
                 {
-                    case 1:
+                    case 2:
                         person = FinalClass.person;
                         startActivity(it2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                         break;
@@ -94,23 +92,31 @@ public class BookingSystem extends BaseActivity
         placeFragment = new PlaceFragment();
         personFragment = new PersonFragment();
         finalClass = new FinalClass();
+        festivalMap = new FestivalMap();
+        dayTimeFragment = new DayTimeFragment();
 
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
+        viewPagerAdapter.addFragment(dayTimeFragment,"일정");
         viewPagerAdapter.addFragment(personFragment,"인원");
+        viewPagerAdapter.addFragment(festivalMap,"축제지도");
         viewPagerAdapter.addFragment(placeFragment,"위치");
         viewPagerAdapter.addFragment(finalClass,"최종확인");
         viewPager.setAdapter(viewPagerAdapter);
 
         //TabLayout 아이콘 설정
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_group_black_24dp);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_map);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_action_complete);
+        tabLayout.getTabAt(0).setIcon(R.drawable.cal);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_group_black_24dp);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_map);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_action_search);
+        tabLayout.getTabAt(4).setIcon(R.drawable.ic_action_complete);
 
-        tabLayout.getTabAt(0).setText("인원");
-        tabLayout.getTabAt(1).setText("위치");
-        tabLayout.getTabAt(2).setText("최종확인");
+        tabLayout.getTabAt(0).setText("일정");
+        tabLayout.getTabAt(1).setText("인원");
+        tabLayout.getTabAt(2).setText("축제지도");
+        tabLayout.getTabAt(3).setText("위치");
+        tabLayout.getTabAt(4).setText("최종확인");
 
     }
 
