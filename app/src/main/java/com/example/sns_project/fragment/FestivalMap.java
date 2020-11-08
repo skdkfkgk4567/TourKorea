@@ -101,9 +101,7 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
     public static String mapx;
     public static String mapy;
     public static TextView placename;
-    public static TextView address;
-    public static TextView enddate;
-    public static TextView startdate;
+    public static TextView Startdate;
     public static ImageView imageView2;
     public static ImageButton imgButton;
     private RelativeLayout LLayout;
@@ -178,10 +176,18 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.clear();
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
 
             @Override
             public boolean onMarkerClick(Marker marker) {
+                String snippet = marker.getSnippet();
+                String startdate = snippet.substring(0,8);
+                String enddate = snippet.substring(11,19);
+                System.out.println("startdate : "+startdate);
+                System.out.println("enddate : "+enddate);
+                TextView start = getView().findViewById(R.id.eventstartdate);
+                start.setText("축제기간\n"+startdate+"\n~\n"+enddate);
                 imgButton = getView().findViewById(R.id.imgButton);
                 imgButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -192,7 +198,6 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
                 });
                 Title = marker.getTitle();
                 Title = Title.replace(" ", "%20");
-                System.out.println("Title : "+Title);
                 try {
                     apiParserSearch2();
                 } catch (MalformedURLException e) {
@@ -452,7 +457,6 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
             Bitmap b=bitmapdraw.getBitmap();
             Bitmap smallMarker = Bitmap.createScaledBitmap(b, 100, 100, false);
             options.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
-            System.out.println("options.getSnippet() : "+options.getSnippet());
 
             mMap.addMarker(options);
             mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
@@ -473,7 +477,6 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
     public ArrayList<TourDTO> apiParserSearch2() throws Exception
     {
         URL url = new URL(getURLParam2(Title));
-        System.out.println("apiParserSearch2 : "+Title);
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
         XmlPullParser xpp = factory.newPullParser();
@@ -542,12 +545,10 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
         }
         LLayout.setVisibility(View.VISIBLE);
         placename = getView().findViewById(R.id.placename);
-        address = getView().findViewById(R.id.address);
-        startdate = getView().findViewById(R.id.eventstartdate);
+        //Startdate = getView().findViewById(R.id.eventstartdate);
         imageView2 = getView().findViewById(R.id.imageView2);
         placename.setText(name);
-        address.setText(addr1);
-        startdate.setText("축제기간\n"+eventstartdate+"\n~\n"+eventenddate);
+        //Startdate.setText("축제기간\n"+eventstartdate+"\n~\n"+eventenddate);
         Glide.with(this).load(firstimage).into(imageView2);
 
         return list;
@@ -556,17 +557,13 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
     public static String getURLParam2(String keyword)
     {
         String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword?serviceKey=axOWzdA%2Ft%2BFO89n8RY1laQLwOgKCba1RfMVxBXmfb9m4mdbSryUpClG1seyeoXHudXIHFYNT3%2F3HagA11q28YA%3D%3D&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10&listYN=Y&arrange=A&contentTypeId=15&areaCode=&sigunguCode=&cat1=&cat2=&cat3=&keyword=";
-        System.out.println("getURLParam2 url : "+url);
             url = url + keyword;
-            System.out.println("getURLParam2 keyword : "+keyword);
         return url;
     }
 
     public static ArrayList<TourDTO> apiParserSearch() throws Exception
     {
-        System.out.println("apiParserSearch 동작 ");
         URL url = new URL(getURLParam(eventStartDate,eventEndDate));
-        System.out.println("apiParserSearch : "+url);
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
         XmlPullParser xpp = factory.newPullParser();
@@ -633,7 +630,6 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
             }
             event_type = xpp.next();
         }
-        System.out.println("list.size() : "+list.size());
 
         return list;
     }
@@ -642,18 +638,15 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
     {
         eventStartDate = checkinDate;
         eventEndDate = checkioutDate;
-        //String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList?serviceKey=axOWzdA%2Ft%2BFO89n8RY1laQLwOgKCba1RfMVxBXmfb9m4mdbSryUpClG1seyeoXHudXIHFYNT3%2F3HagA11q28YA%3D%3D&numOfRows=100&pageNo=1&MobileOS=AND&MobileApp=AppTest&arrange=E&contentTypeId=15";
-        String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?ServiceKey=axOWzdA%2Ft%2BFO89n8RY1laQLwOgKCba1RfMVxBXmfb9m4mdbSryUpClG1seyeoXHudXIHFYNT3%2F3HagA11q28YA%3D%3D";
-        //위 url : 위치기반 검색
-        //아래url : 전국 해당기간 축제 검색
+        String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey=axOWzdA%2Ft%2BFO89n8RY1laQLwOgKCba1RfMVxBXmfb9m4mdbSryUpClG1seyeoXHudXIHFYNT3%2F3HagA11q28YA%3D%3D&numOfRows=10000&pageNo=1&MobileOS=AND&MobileApp=AppTest&arrange=A&listYN=Y";
+
         if (eventStartDate != null)
         {
             url = url + "&eventStartDate=" + eventStartDate;
             if (eventEndDate != null)
             {
-                url = url + "&eventEndDate=" + eventEndDate + "&areaCode=&sigunguCode=&cat1=A02&cat2=&cat3=&listYN=Y&MobileOS=AND&MobileApp=AppTest&arrange=A&numOfRows=10000&pageNo=1";
+                url = url + "&eventEndDate=" + eventEndDate;
                 tts = url;
-                System.out.println("url : " + url);
             }
         }
         return url;

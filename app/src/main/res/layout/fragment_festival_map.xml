@@ -39,10 +39,10 @@
 
                     <TextView
                         android:id="@+id/placename"
-                        android:layout_width="352dp"
+                        android:layout_width="370dp"
                         android:layout_height="50dp"
                         android:text="TextView"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <ImageButton
                         android:id="@+id/imgButton"
@@ -51,14 +51,6 @@
                         android:layout_marginStart="0dp"
                         app:srcCompat="@drawable/places_ic_clear" />
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:text="TextView"
-                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/eventstartdate"
@@ -71,7 +63,7 @@
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="match_parent"
-                    android:layout_height="183dp"
+                    android:layout_height="266dp"
                     app:srcCompat="@drawable/ic_more_vert_black_24dp" />
 
             </LinearLayout>
