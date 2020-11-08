@@ -1,5 +1,6 @@
 package com.example.sns_project.activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -58,12 +59,16 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     private int adult;
     private int child;
     private int baby;
+    public static String OKB;
+    public static Activity searchActivity;
+    public static String HotelName;
+    public static String HotelAddress;
 
     ArrayList<HashMap<String, String>> mArrayList;
     ListView mlistView;
     String mJsonString;
     Button button;
-    TextView textView;
+    TextView textView, hotel_name, hotel_address;
     Bitmap bitmap;
     TextView txtResult;
 
@@ -78,6 +83,11 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         adult = FinalClass.adult;
         child = FinalClass.child;
         baby = FinalClass.baby;
+        OKB = PopupRoom.OKB;
+        hotel_name = FinalClass.hotel_name;
+        hotel_address = FinalClass.hotel_address;
+        searchActivity = SearchActivity.this;
+
 
         System.out.println("SearchActivity person : "+person);
         switch (person)
@@ -150,14 +160,15 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         });
 
     }
-
-
-
-
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
+        String data = parent.getAdapter().getItem(position).toString();
+        System.out.println("data : "+data);
+        HotelName = data.substring(data.indexOf(", HotelName=")+12,data.length()-1);
+        HotelAddress = data.substring(data.indexOf("SiGunGu=")+8,data.indexOf(", HotelName="));
+        hotel_name.setText(HotelName);
+        hotel_address.setText(HotelAddress);
         Intent intent = new Intent(SearchActivity.this, PopupRoom.class);
         startActivityForResult(intent, 1);
     }
@@ -292,6 +303,4 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             Log.d(TAG, "showResult : ", e);
         }
     }
-
-
 }

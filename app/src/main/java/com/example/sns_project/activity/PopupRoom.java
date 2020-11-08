@@ -28,12 +28,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.example.sns_project.activity.SearchActivity.searchActivity;
+
 public class PopupRoom extends AppCompatActivity
 {
     private static final String TAG_JSON="webnautes";
     private static final String TAG_RoomKinds = "RoomKinds";
     private static final String TAG_Price = "Price";
     private static String TAG = "PopupRoom";
+    public static String OKB = "";
     String mJsonString;
     ArrayList<HashMap<String, String>> mArrayList;
     private static int count = 0;
@@ -56,11 +59,13 @@ public class PopupRoom extends AppCompatActivity
         GetData task = new GetData();
         task.execute();
 
+
     }
 
     //동작 버튼 클릭
-    public void mOk(View v){
-
+    public void mOk(View v)
+    {
+        searchActivity.finish();
         finish();
     }
 

@@ -30,6 +30,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.sns_project.R;
 import com.example.sns_project.activity.TourDTO;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -55,6 +56,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -67,6 +69,7 @@ import static com.example.sns_project.fragment.DayTimeFragment.checkoutDate;
 
 public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
 
+    private static String areacode;
     private FragmentActivity mContext;
 
     private static final String TAG = NowLocation_V2.class.getSimpleName();
@@ -135,6 +138,7 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
         LLayout = layout.findViewById(R.id.Llayout);
         LLayout.setVisibility(View.INVISIBLE);
         mapView = layout.findViewById(R.id.mapView);
+        areacode = FinalClass.areacode;
 
         if (mapView != null) {
             mapView.onCreate(savedInstanceState);
@@ -178,13 +182,6 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
 
             @Override
             public boolean onMarkerClick(Marker marker) {
-                String snippet = marker.getSnippet();
-                String startdate = snippet.substring(0,8);
-                String enddate = snippet.substring(11,19);
-                System.out.println("startdate : "+startdate);
-                System.out.println("enddate : "+enddate);
-                TextView start = getView().findViewById(R.id.eventstartdate);
-                start.setText("축제기간\n"+startdate+"\n~\n"+enddate);
                 imgButton = getView().findViewById(R.id.imgButton);
                 imgButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -194,14 +191,15 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
                     }
                 });
                 Title = marker.getTitle();
-                Title = Title.replace(" ", "%20");/*
+                System.out.println("Title : "+Title);
+                Title = Title.replace(" ", "%20");
                 try {
                     apiParserSearch2();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace();
-                }*/
+                }
                 return false;
 
             }
@@ -292,7 +290,6 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
                 mapy = String.valueOf(location.getLatitude());
                 System.out.println("mapx : "+mapx);
                 System.out.println("mapy : "+mapy);
-                getURLParam(mapx,mapy);
 
                 Log.d(TAG, "Time :" + CurrentTime() + " onLocationResult : " + markerSnippet);
                 setCurrentLocation(location, markerTitle, markerSnippet);
@@ -479,8 +476,8 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
             });
         }
 
-    }*/
-/*
+    }
+*/
     public ArrayList<TourDTO> apiParserSearch2() throws Exception
     {
         URL url = new URL(getURLParam2(Title));
@@ -565,13 +562,14 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
     {
         String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword?serviceKey=axOWzdA%2Ft%2BFO89n8RY1laQLwOgKCba1RfMVxBXmfb9m4mdbSryUpClG1seyeoXHudXIHFYNT3%2F3HagA11q28YA%3D%3D&MobileApp=AppTest&MobileOS=ETC&pageNo=1&numOfRows=10&listYN=Y&arrange=A&contentTypeId=15&areaCode=&sigunguCode=&cat1=&cat2=&cat3=&keyword=";
         url = url + keyword;
+        System.out.println("keyword : "+keyword);
         return url;
     }
-*/
+
     public static ArrayList<TourDTO> apiParserSearch() throws Exception
     {
         System.out.println("apiParserSearch 동작 ");
-        URL url = new URL(getURLParam(mapx,mapy));
+        URL url = new URL(getURLParam(areacode));
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
         XmlPullParser xpp = factory.newPullParser();
@@ -638,23 +636,11 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
         return list;
     }
 
-    public static String getURLParam(String mapx, String mapy)
+    public static String getURLParam(String areacode)
     {
-        String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList?serviceKey=axOWzdA%2Ft%2BFO89n8RY1laQLwOgKCba1RfMVxBXmfb9m4mdbSryUpClG1seyeoXHudXIHFYNT3%2F3HagA11q28YA%3D%3D&numOfRows=100&pageNo=1&MobileOS=AND&MobileApp=AppTest&arrange=E&contentTypeId=15";
-        //String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?ServiceKey=yjLZTJHFbgy0YqvubJsxK1Izf%2FW%2ByFs94A%2F0M046ZxHpCCwpWQ84MCnhvwz%2FipI8kKSdJXvZ7D5qZWqCtmSVYA%3D%3D&eventStartDate=20201101&eventEndDate=20201130&areaCode=&sigunguCode=&cat1=A02&cat2=&cat3=&listYN=Y&MobileOS=AND&MobileApp=AppTest&arrange=A&numOfRows=12&pageNo=1";
-        //String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=axOWzdA%2Ft%2BFO89n8RY1laQLwOgKCba1RfMVxBXmfb9m4mdbSryUpClG1seyeoXHudXIHFYNT3%2F3HagA11q28YA%3D%3D&contentTypeId=12&areaCode=&sigunguCode=&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=A&numOfRows=12&pageNo=1";
-        //위 url : 위치기반 검색
-        //아래url : 전국 해당기간 축제 검색
-        if (mapx != null)
-        {
-            url = url + "&mapX=" + mapx;
-            if (mapy != null)
-            {
-                url = url + "&mapY=" + mapy + "&radius=20000&listYN=Y&modifiedtime=&";
-                tts = url;
-                System.out.println("url : " + url);
-            }
-        }
+        String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=axOWzdA%2Ft%2BFO89n8RY1laQLwOgKCba1RfMVxBXmfb9m4mdbSryUpClG1seyeoXHudXIHFYNT3%2F3HagA11q28YA%3D%3D&contentTypeId=12&areaCode=";
+        url = url + areacode +"&sigunguCode=&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=A&numOfRows=12&pageNo=1";
+        System.out.println("url : " + url);
         return url;
     }
 

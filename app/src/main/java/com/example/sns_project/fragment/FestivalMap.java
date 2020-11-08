@@ -145,6 +145,8 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
         checkinMonth = DayTimeFragment.checkinMonth;
         checkoutMonth = DayTimeFragment.checkoutMonth;
 
+
+
         return layout;
     }
 
@@ -187,6 +189,7 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
                 System.out.println("enddate : "+enddate);
                 TextView start = getView().findViewById(R.id.eventstartdate);
                 start.setText("축제기간\n"+startdate+"\n~\n"+enddate);
+
                 imgButton = getView().findViewById(R.id.imgButton);
                 imgButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -296,7 +299,6 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
                 mCurrentLocatiion = location;
                 String eventstart = checkinDate;
                 String eventend = checkoutDate;
-                System.out.println(eventstart);
                 if(eventstart!=null)
                 {
                     try {

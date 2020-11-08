@@ -36,6 +36,7 @@ public class MainActivity extends BaseActivity
     public static int Num_ITEMS = 5;
     public static String PageName ="";
     private ViewPager viewPager;
+    public static String areacode;
     BottomNavigationView bottomNavigationView;
 
     FragmentPagerAdapter PagerAdapter;
@@ -61,6 +62,9 @@ public class MainActivity extends BaseActivity
         setContentView(binding.getRoot());
         checkSelfPermission();
         it2 = new Intent(this, BookingSystem.class);
+        Intent intent = getIntent();
+        areacode = intent.getStringExtra("areacode");
+        System.out.println("MainActivity areacode : " + areacode);
 
         //ViewPager 설정
         viewPager = (ViewPager) findViewById(R.id.container);

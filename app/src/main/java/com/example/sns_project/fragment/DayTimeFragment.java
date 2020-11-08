@@ -51,9 +51,8 @@ public class DayTimeFragment extends Fragment
                         String coutgetMonth = String.valueOf(checkoutMonth);
                         String coutgetDay = String.valueOf(comcheckout.getDayOfMonth());
                         checkoutDate = coutgetYear+coutgetMonth+coutgetDay;
-                        date_final.setText("체크인 날짜 : "+date_final.getText() + " " + comcheckin.getYear() + "/" + checkinMonth + "/" + comcheckin.getDayOfMonth()
-                        + "\n체크아웃 날짜 : "+date_final.getText() + " " + comcheckout.getYear() + "/" + checkoutMonth + "/" + comcheckout.getDayOfMonth());
-                        FestivalMap.getURLParam(checkinDate,checkoutDate);
+                        FinalClass.date_final.setText("체크인 날짜 : "+date_final.getText() + " " + comcheckin.getYear() + "/" + checkinMonth + "/" + comcheckin.getDayOfMonth()
+                                + "\n체크아웃 날짜 : "+date_final.getText() + " " + comcheckout.getYear() + "/" + checkoutMonth + "/" + comcheckout.getDayOfMonth());
                         break;
                 }
             }
