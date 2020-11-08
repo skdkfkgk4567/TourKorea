@@ -39,8 +39,6 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
@@ -239,9 +237,9 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
         markerOptions.draggable(true);
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
         currentMarker = mMap.addMarker(markerOptions);
-
+/*
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(mDefaultLocation, 15);
-        mMap.moveCamera(cameraUpdate);
+        mMap.moveCamera(cameraUpdate);*/
     }
 
     String getCurrentAddress(LatLng latlng) {
@@ -329,10 +327,10 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
         markerOptions.draggable(true);
 
         //currentMarker = mMap.addMarker(markerOptions);
-
+/*
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(currentLatLng);
         mMap.moveCamera(cameraUpdate);
-
+*/
     }
 
     private void getDeviceLocation() {
