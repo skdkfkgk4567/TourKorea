@@ -52,7 +52,6 @@ public class BookingSystem extends BaseActivity
         super.onCreate(savedInstanceState);
         BookingBinding binding = BookingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        it = new Intent(this, NowLocation.class);
         it2 = new Intent(this, SearchActivity.class);
 
 

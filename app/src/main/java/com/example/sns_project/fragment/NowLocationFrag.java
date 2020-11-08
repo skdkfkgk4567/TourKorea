@@ -1,6 +1,5 @@
 package com.example.sns_project.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.sns_project.R;
 import com.example.sns_project.activity.MainActivity;
-import com.example.sns_project.activity.NowLocation;
 import com.example.sns_project.databinding.Cul2Binding;
 
 public class NowLocationFrag extends Fragment {
@@ -24,7 +22,6 @@ public class NowLocationFrag extends Fragment {
         if (MainActivity.PageName.equals("nowlocation"))
         {
             System.out.println("MainActivity.PageName : "+MainActivity.PageName);
-            getActivity().startActivity(new Intent(getActivity(), NowLocation.class));
             Cul2Binding binding = Cul2Binding.inflate(getLayoutInflater());
             binding.fabNewPost.setVisibility(View.VISIBLE);
         }
