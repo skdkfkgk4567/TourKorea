@@ -188,7 +188,7 @@ public class FestivalMap extends Fragment implements OnMapReadyCallback {
                 System.out.println("startdate : "+startdate);
                 System.out.println("enddate : "+enddate);
                 TextView start = getView().findViewById(R.id.eventstartdate);
-                start.setText("축제기간\n"+startdate+"\n~\n"+enddate);
+                start.setText("축제기간 : "+startdate+"~"+enddate);
 
                 imgButton = getView().findViewById(R.id.imgButton);
                 imgButton.setOnClickListener(new View.OnClickListener() {

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.NowLocation">
+    android:orientation="vertical">
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
@@ -49,14 +48,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginStart="0dp"
-                        app:srcCompat="@drawable/places_ic_clear" />
+                        app:srcCompat="@drawable/places_ic_clear"
+                        android:layout_marginLeft="0dp" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/eventstartdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="TextView"
+                    android:textSize="20sp" />
 
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="match_parent"
                     android:layout_height="301dp"
-                    app:srcCompat="@drawable/ic_more_vert_black_24dp" />
+                    android:contentDescription="TODO" />
 
             </LinearLayout>
         </ScrollView>

@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.NowLocation">
+    android:orientation="vertical">
 
-    <fragment
-        android:id="@+id/map"
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
         class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -39,48 +38,36 @@
 
                     <TextView
                         android:id="@+id/placename"
-                        android:layout_width="352dp"
+                        android:layout_width="370dp"
                         android:layout_height="50dp"
                         android:text="TextView"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <ImageButton
                         android:id="@+id/imgButton"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginStart="0dp"
-                        app:srcCompat="@drawable/places_ic_clear" />
+                        app:srcCompat="@drawable/places_ic_clear"
+                        android:layout_marginLeft="0dp" />
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/address"
+                    android:id="@+id/placeaddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:text="TextView"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:id="@+id/telnumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="25sp" />
+                    android:text="TextView" />
 
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="match_parent"
-                    android:layout_height="183dp"
-                    app:srcCompat="@drawable/ic_more_vert_black_24dp" />
+                    android:layout_height="301dp"
+                    android:contentDescription="TODO" />
 
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="190dp"
-                    app:srcCompat="@drawable/ic_more_vert_black_24dp" />
             </LinearLayout>
         </ScrollView>
 
     </RelativeLayout>
 
 </RelativeLayout>
+

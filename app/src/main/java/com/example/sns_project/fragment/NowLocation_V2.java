@@ -106,6 +106,7 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
     private RelativeLayout LLayout;
     public static String Title;
     public static String tts;
+    public static TextView placeaddress;
 
     public NowLocation_V2() {
     }
@@ -132,11 +133,12 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
             mCurrentLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             CameraPosition mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
-        View layout = inflater.inflate(R.layout.fragment_festival_map, container, false);
+        View layout = inflater.inflate(R.layout.activity_now, container, false);
         LLayout = layout.findViewById(R.id.Llayout);
         LLayout.setVisibility(View.INVISIBLE);
         mapView = layout.findViewById(R.id.mapView);
         areacode = FinalClass.areacode;
+        placeaddress = layout.findViewById(R.id.placeaddress);
 
         if (mapView != null) {
             mapView.onCreate(savedInstanceState);
@@ -549,6 +551,7 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
         placename = getView().findViewById(R.id.placename);
         //Startdate = getView().findViewById(R.id.eventstartdate);
         imageView2 = getView().findViewById(R.id.imageView2);
+        placeaddress.setText(addr1);
         placename.setText(name);
         //Startdate.setText("축제기간\n"+eventstartdate+"\n~\n"+eventenddate);
         Glide.with(this).load(firstimage).into(imageView2);
