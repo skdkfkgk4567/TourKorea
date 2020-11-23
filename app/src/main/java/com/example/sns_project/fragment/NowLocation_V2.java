@@ -662,7 +662,7 @@ public class NowLocation_V2 extends Fragment implements OnMapReadyCallback {
             options.title(entity.getName());
             options.snippet(entity.getAddr());
             options.snippet(entity.getTel());
-            BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.free);
+            BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.map_marker);
             Bitmap b=bitmapdraw.getBitmap();
             Bitmap smallMarker = Bitmap.createScaledBitmap(b, 100, 100, false);
             options.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
